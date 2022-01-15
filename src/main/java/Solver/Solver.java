@@ -20,10 +20,7 @@ public class Solver {
             }
             lVector.setEntry(i, L(i));
         }
-        System.out.println(lVector);
-        System.out.println(bMatrix);
         RealVector W = new LUDecomposition(bMatrix).getSolver().solve(lVector);
-
         return Arrays.copyOf(W.toArray(), n);
     }
 
@@ -69,9 +66,9 @@ public class Solver {
             return 0.0;
         }
         if (x < xi) {
-            return (double) Math.round((1 / h) * 1000000000) / 1000000000;
+            return 1/h;
         }
-        return (double) Math.round((-1 / h) * 1000000000) / 1000000000;
+        return -1/h;
 
     }
 
@@ -82,9 +79,4 @@ public class Solver {
     public double L(int m) {
         return -20 * e(m, 0);
     }
-
-//    private int k(double x){
-//        return x <= 1 ? 1 : 2;
-//    }
-
 }

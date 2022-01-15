@@ -2,6 +2,7 @@ package GUI;
 
 import Solver.Solver;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -10,13 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-import java.util.Arrays;
-
 public class Main extends Application {
     public static void main(String[] args) {
-        Solver solver = new Solver(3);
-        double[] result = solver.solve();
-        System.out.println(Arrays.toString(result));
         launch(args);
     }
 
@@ -32,7 +28,9 @@ public class Main extends Application {
         TextField nElements = new javafx.scene.control.TextField("15");
         Button button = new Button("draw graph");
         button.setOnAction(event -> primaryStage.setScene(makeGraphScene(Integer.parseInt(nElements.getText()))));
-        return new Scene(new VBox(nElements, button));
+        VBox vBox = new VBox(nElements, button);
+        vBox.setAlignment(Pos.CENTER);
+        return new Scene(vBox);
     }
 
     private Scene makeGraphScene(int n) {
